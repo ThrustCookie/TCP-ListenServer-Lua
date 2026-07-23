@@ -76,6 +76,9 @@ function server.update()
         local error
         server.client, error = tcp:accept()
         if error and error ~= 'timeout' then print(error) end
+        if server.client then
+            server.client:settimeout(0)
+        end
         return
     end
     world.server.x, world.server.y = love.mouse.getPosition()
